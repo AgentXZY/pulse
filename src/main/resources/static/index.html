@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PULSE | Project Workspace</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">P</div>
+            <span>PULSE</span>
+        </div>
+
+        <div class="workspace">
+            <div class="workspace-avatar">V</div>
+            <div>
+                <strong>My Workspace</strong>
+                <small>Personal workspace</small>
+            </div>
+        </div>
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <nav>
+            <a href="#" class="nav-item active">
+                <span>◫</span> Overview
+            </a>
+
+            <a href="#projects" class="nav-item">
+                <span>▦</span> Projects
+            </a>
+
+            <a href="#projects" class="nav-item">
+                <span>☷</span> My Tasks
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="profile">
+                <div class="profile-avatar">V</div>
+                <div>
+                    <strong>Vinam Sharma</strong>
+                    <small>Administrator</small>
+                </div>
+                <span class="profile-menu">···</span>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Workspace / Overview</span>
+                <h1>Good afternoon, Vinam <span>✦</span></h1>
+                <p>Here's what's happening with your projects.</p>
+            </div>
+
+            <button class="primary-btn" onclick="openModal()">
+                + New Project
+            </button>
+        </header>
+
+
+        <!-- STATISTICS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Total Projects</span>
+                    <span class="stat-icon purple">▦</span>
+                </div>
+                <h2 id="totalProjects">0</h2>
+                <small>All your projects</small>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>In Progress</span>
+                    <span class="stat-icon blue">◷</span>
+                </div>
+                <h2 id="activeProjects">0</h2>
+                <small>Currently active</small>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Completed</span>
+                    <span class="stat-icon green">✓</span>
+                </div>
+                <h2 id="completedProjects">0</h2>
+                <small>Successfully finished</small>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Planned</span>
+                    <span class="stat-icon orange">◈</span>
+                </div>
+                <h2 id="plannedProjects">0</h2>
+                <small>Waiting to start</small>
+            </div>
+
+        </section>
+
+
+        <!-- PROJECT SECTION -->
+        <section class="projects-section" id="projects">
+
+            <div class="section-header">
+                <div>
+                    <h2>Your Projects</h2>
+                    <p>Manage and track everything in one place.</p>
+                </div>
+
+                <select id="filterStatus" onchange="loadProjects()">
+                    <option value="ALL">All Projects</option>
+                    <option value="PLANNED">Planned</option>
+                    <option value="IN_PROGRESS">In Progress</option>
+                    <option value="COMPLETED">Completed</option>
+                </select>
+            </div>
+
+            <div id="projectList" class="project-grid">
+
+                <div class="empty-state">
+                    Loading projects...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- CREATE / EDIT MODAL -->
+<div class="modal-overlay" id="projectModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+            <div>
+                <h2 id="modalTitle">Create Project</h2>
+                <p>Give your next idea a place to grow.</p>
+            </div>
+
+            <button class="close-btn" onclick="closeModal()">×</button>
+        </div>
+
+        <form id="projectForm">
+
+            <label>Project Name</label>
+            <input type="text" id="projectName"
+                   placeholder="e.g. Portfolio Website" required>
+
+            <label>Description</label>
+            <textarea id="projectDescription"
+                      placeholder="What is this project about?"></textarea>
+
+            <label>Deadline</label>
+            <input type="date" id="projectDeadline">
+
+            <label>Status</label>
+            <select id="projectStatus">
+                <option value="PLANNED">Planned</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="COMPLETED">Completed</option>
+            </select>
+
+            <div class="modal-actions">
+                <button type="button" class="cancel-btn"
+                        onclick="closeModal()">Cancel</button>
+
+                <button type="submit" class="primary-btn">
+                    Save Project
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
